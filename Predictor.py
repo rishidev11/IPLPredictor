@@ -71,6 +71,22 @@ delivery_df['player_dismissed'] = delivery_df['player_dismissed'].astype('int')
 wickets = delivery_df.groupby('match_id')['player_dismissed'].cumsum().values
 delivery_df['wickets'] = 10 - wickets
 
-# current run rate = runs/overs
-delivery_df['current_run_rate'] = (delivery_df['current_score'] * 6) / (120 - delivery_df['balls_left'])
-print(delivery_df)
+# current run rate = runs/balls left
+delivery_df['crr'] = (delivery_df['current_score'] * 6) / (120 - delivery_df['balls_left'])
+
+# required run rate = runs required/balls left
+delivery_df['rrr'] = (delivery_df['runs_left'] * 6)/(delivery_df['balls_left'])
+
+def result(row):
+    return 1 if row['batting_team'] == row['winner'] else 0
+
+# Creating a new column representing the result of the match
+delivery_df['result'] = delivery_df.apply(result, axis=1)
+
+# Creating our final dataframe
+final_df = delivery_df[['batting_team', 'bowling_team', 'city', 'runs_left', 'balls_left', 'wickets', 'total_runs_x', 'crr', 'rrr', 'result']]
+
+# Shuffles the rows in the dataframe randomly to prevent any bias from forming
+final_df = final_df.sample(final_df.shape[0])
+
+
