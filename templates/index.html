@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cricket Match Predictor</title>
+</head>
+<body>
+    <h1>Cricket Match Predictor</h1>
+    <form method="post">
+        <label for="team1">Team 1 (Batting):</label>
+        <select name="team1" id="team1">
+            <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+            <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+            <option value="Chennai Super Kings">Chennai Super Kings</option>
+            <option value="Mumbai Indians">Mumbai Indians</option>
+            <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+            <option value="Kings XI Punjab">Kings XI Punjab</option>
+            <option value="Rajasthan Royals">Rajasthan Royals</option>
+            <option value="Delhi Capitals">Delhi Capitals</option>
+        </select>
+        <br>
+        <label for="team2">Team 2 (Bowling):</label>
+        <select name="team2" id="team2">
+            <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+            <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+            <option value="Chennai Super Kings">Chennai Super Kings</option>
+            <option value="Mumbai Indians">Mumbai Indians</option>
+            <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+            <option value="Kings XI Punjab">Kings XI Punjab</option>
+            <option value="Rajasthan Royals">Rajasthan Royals</option>
+            <option value="Delhi Capitals">Delhi Capitals</option>
+        </select>
+        <br>
+        <label for="city">Host City:</label>
+        <input type="text" id="city" name="city">
+        <br>
+        <label for="target">Target:</label>
+        <input type="number" id="target" name="target">
+        <br>
+        <label for="current_score">Current Score:</label>
+        <input type="number" id="current_score" name="current_score">
+        <br>
+        <label for="wickets">Wickets:</label>
+        <input type="number" id="wickets" name="wickets">
+        <br>
+        <label for="overs_completed">Overs Completed:</label>
+        <input type="number" step="0.1" id="overs_completed" name="overs_completed">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
