@@ -6,9 +6,10 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 import matplotlib.pyplot as plt
+import joblib
 
-matches = pd.read_csv('IPLMatches.csv')
-deliveries = pd.read_csv('deliveries.csv')
+matches = pd.read_csv('data/IPLMatches.csv')
+deliveries = pd.read_csv('data/deliveries.csv')
 
 # Obtaining total scores from first and second innings of each game into a dataframe
 total_score_df = deliveries.groupby(['match_id', 'inning']).sum()['total_runs'].reset_index()
@@ -176,6 +177,8 @@ plt.plot(temp_df['end_of_over'],temp_df['lose'],color='red',linewidth=4)
 plt.bar(temp_df['end_of_over'],temp_df['runs_after_over'])
 plt.title('Target-' + str(target))
 
+
+joblib.dump(pipe, 'model/cricket_match_predictor.pkl')
 
 
 
