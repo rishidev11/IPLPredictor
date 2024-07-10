@@ -186,7 +186,6 @@ plt.plot(temp_df['end_of_over'],temp_df['lose'],color='red',linewidth=4)
 plt.bar(temp_df['end_of_over'],temp_df['runs_after_over'])
 plt.title('Target-' + str(target))
 
-
 joblib.dump(pipe, 'model/cricket_match_predictor.pkl')
 
 

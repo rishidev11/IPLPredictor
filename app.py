@@ -52,6 +52,7 @@ def index():
               'Sharjah', 'Mohali', 'Bengaluru'
     ]
 
+
     cities = sorted(cities)
 
     return render_template('index.html', cities=cities)
