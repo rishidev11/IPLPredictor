@@ -113,7 +113,7 @@ y = final_df.iloc[:,-1]
 # If you run the code multiple times with the same random_state, you will get the same split.
 X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2, random_state=1)
 
-# A ColumnTransformer is used to apply different transformations to differnet columns of a dataframe
+# A ColumnTransformer is used to apply different transformations to different columns of a dataframe
 # In this case, OneHotEncoding is applied to the batting_team, bowling_team and city columns
 trf = ColumnTransformer([
     ('trf', OneHotEncoder(sparse_output=False, drop='first'), ['batting_team', 'bowling_team', 'city'])], remainder='passthrough')
@@ -136,25 +136,34 @@ def match_summary(row):
     print("Batting Team-" + row['batting_team'] + " | Bowling Team-" + row['bowling_team'] + " | Target- " + str(row['total_runs_x']))
 
 # Tracks progression of a match over each over, using the pipeline to show win/lose probabilities
-# Filters the DataFrame x_df for the given match_id and only considers the data at the end of each over (ball == 6).
 # Cleans the data and predicts win/lose probabilities for each over using pipe.
 # Calculates additional metrics like runs_after_over and wickets_in_over.
 # Prints the target score and returns a DataFrame with the progression details and the target score
 def match_progression(x_df, match_id, pipe):
+    # Filters the DataFrame x_df for the given match_id
     match = x_df[x_df['match_id'] == match_id]
+    # Only considers the data at the end of each over (ball == 6).
     match = match[match['ball'] == 6]
+
+    # Selects relevant columns, dropping any missing values
     temp_df = match[['batting_team', 'bowling_team', 'city', 'runs_left', 'balls_left', 'wickets', 'total_runs_x', 'crr','rrr']].dropna()
+    # Ensures no rows have 0 balls left
     temp_df = temp_df[temp_df['balls_left'] != 0]
+
+    # Uses the model to predict win and lose probabilites, and adds these to the DataFrame as a percentage rounded to 1dp
     result = pipe.predict_proba(temp_df)
     temp_df['lose'] = np.round(result.T[0] * 100, 1)
     temp_df['win'] = np.round(result.T[1] * 100, 1)
     temp_df['end_of_over'] = range(1, temp_df.shape[0] + 1)
 
+    # Runs calculated at the end of each over
     target = temp_df['total_runs_x'].values[0]
     runs = list(temp_df['runs_left'].values)
     new_runs = runs[:]
     runs.insert(0, target)
     temp_df['runs_after_over'] = np.array(runs)[:-1] - np.array(new_runs)
+
+    # Wickets taken in each over
     wickets = list(temp_df['wickets'].values)
     new_wickets = wickets[:]
     new_wickets.insert(0, 10)
