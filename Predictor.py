@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
@@ -122,7 +123,7 @@ trf = ColumnTransformer([
 # First is the ColumnTransformer, next is the LogisticRegression model
 pipe = Pipeline(steps=[
     ('step1', trf),
-    ('step2', LogisticRegression(solver='liblinear'))
+    ('step2', RandomForestClassifier(n_estimators=100, random_state=1))
 ])
 
 # Pipeline fit to training data
