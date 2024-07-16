@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <title>Cricket Match Predictor</title>
 </head>
 <body>
     <h1>Cricket Match Predictor</h1>
-    <form method="post">
+    <script>
+        function validateForm() {
+            var target = $('#target').val();
+            var currentScore = $('#current_score').val();
+            var oversCompleted = $('#overs_completed').val();
+
+            if (parseInt(target) <= parseInt(currentScore)) {
+                alert("The target should be greater than the current score.");
+                return false;
+            }
+
+            var ballsLeft = 120 - (parseFloat(oversCompleted) * 6);
+            if (ballsLeft <= 0) {
+                alert("Overs completed should be less than 20.");
+                return false;
+            }
+
+            return true;  // Allow the form to be submitted if all checks are passed
+        }
+    </script>
+    <form method="post" onsubmit="return validateForm()">
         <label for="team1">Team 1 (Batting):</label>
         <select name="team1" id="team1">
             <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
@@ -38,7 +59,7 @@
         </select>
 
         <br>
-        <label for="target">Talrget:</label>
+        <label for="target">Target:</label>
         <input type="number" id="target" name="target">
         <br>
         <label for="current_score">Current Score:</label>
@@ -51,6 +72,7 @@
         <input type="number" step="0.1" id="overs_completed" name="overs_completed">
         <br>
         <button type="submit">Submit</button>
+
     </form>
 </body>
 </html>

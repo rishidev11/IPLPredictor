@@ -23,6 +23,7 @@ def index():
 
         runs_left = target - current_score
         balls_left = 120 - int(overs_completed * 6)
+
         crr = (current_score * 6) / (overs_completed * 6)
         rrr = (runs_left * 6) / balls_left
 
