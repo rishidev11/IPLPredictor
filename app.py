@@ -24,6 +24,13 @@ def index():
         runs_left = target - current_score
         balls_left = 120 - int(overs_completed * 6)
 
+
+        if (wickets >= 10 and current_score <= target):
+            win_probability = 0
+            lose_probability = 100
+            return render_template('result.html', team1=team1, team2=team2, win_probability=win_probability,lose_probability=lose_probability)
+
+
         crr = (current_score * 6) / (overs_completed * 6)
         rrr = (runs_left * 6) / balls_left
 
