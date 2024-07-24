@@ -2,19 +2,23 @@
 <html>
 <head>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
     <title>Match Result</title>
 </head>
 <body>
-    <h1>Match Prediction Result</h1>
-    <p>Batting Team: {{ team1 }}</p>
-    <p>Bowling Team: {{ team2 }}</p>
-    <p>Win Probability: {{ win_probability }}%</p>
-    <p>Lose Probability: {{ lose_probability }}%</p>
-    <h4>Note: This is NOT 100% accurate and should be taken lightly</h4>
-    <script>
-        var heading = $('h4');
-        heading.css("background-color", "yellow");
-    </script>
-    <a href="/">Back to Home</a>
+    <div class="topnav">
+            <a class="active" href="/home"> Home </a>
+            <h1>Cricket Match Predictor</h1>
+            <a class="active" href="/predictor"> Predictor </a>
+    </div>
+    <div class="result-container">
+        <h1>Match Prediction Result</h1>
+        <p>Batting Team: {{ team1 }}</p>
+        <p>Bowling Team: {{ team2 }}</p>
+        <p>Win Probability: {{ win_probability }}%</p>
+        <p>Lose Probability: {{ lose_probability }}%</p>
+        <h4>Note: This is NOT 100% accurate and should be taken lightly</h4>
+        <a href="/">Back to Home</a>
+    </div>
 </body>
 </html>

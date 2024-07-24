@@ -1,11 +1,16 @@
 .topnav {
+    width: 100%;
+    background-color: #333; /* Dark background color for navbar */
+    overflow: hidden;
+    position: fixed; /* Fixed positioning to keep navbar at the top */
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensure the navbar is above other elements */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
-    position: relative;
-    z-index: 1000;
+    justify-content: space-around; /* Distribute space evenly */
+    align-items: center; /* Center vertically */
+    padding: 10px 0; /* Padding for top and bottom */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
 }
 
 .topnav a {
@@ -27,7 +32,93 @@
     background-color: #ff5722; /* Active link color */
 }
 
+/* Base body styling with background image */
 body {
-  background-image: url("websitebg.jpg"); no-repeat;
-  background-size:contain;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('websitebg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff; /* Default text color for readability */
 }
+
+/* Form container styling */
+.form-container {
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+}
+
+/* Form heading styling */
+.form-container h2 {
+    margin-bottom: 20px;
+    color: #ff5722; /* Accent color for heading */
+    text-align: center;
+}
+
+/* Label styling */
+.form-container label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Input field styling */
+.form-container input[type="number"],
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fff; /* White background for inputs */
+    color: #333; /* Dark text color */
+    transition: border-color 0.3s;
+}
+
+/* Dropdown arrow styling */
+.form-container select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="10" viewBox="0 0 24 24" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+}
+
+/* Focus state styling */
+.form-container input[type="number"]:focus,
+.form-container select:focus {
+    border-color: #ff5722; /* Accent color on focus */
+    outline: none;
+}
+
+/* Submit button styling */
+.form-container button[type="submit"] {
+    width: 100%;
+    background-color: #ff5722; /* Primary button color */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover state for submit button */
+.form-container button[type="submit"]:hover {
+    background-color: #e64a19; /* Darker shade on hover */
+}
+
